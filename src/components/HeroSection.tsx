@@ -20,7 +20,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider uppercase mb-6">
-              Business Consulting
+              Start Your Journey
             </span>
           </motion.div>
 
@@ -30,8 +30,8 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6"
           >
-            Strategic Solutions{" "}
-            <span className="text-gradient">for Business Growth</span>
+            Synchronizing People,{" "}
+            <span className="text-gradient">Process, Technology.</span>
           </motion.h1>
 
           <motion.p
@@ -40,9 +40,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            A leadership-focused business consulting firm helping organizations improve sales performance, profitability, and operational excellence.
           </motion.p>
 
           <motion.div
@@ -72,7 +70,7 @@ const HeroSection = () => {
             <div className="blob-shape overflow-hidden relative z-10">
               <img
                 src={heroImg}
-                alt="Business consulting team"
+                alt="SynCore consulting team"
                 width={1024}
                 height={1024}
                 className="w-full h-[500px] object-cover"

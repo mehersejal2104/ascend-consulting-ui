@@ -4,15 +4,15 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <div className="font-display text-2xl font-bold mb-4">LOGO</div>
+            <div className="font-display text-2xl font-bold mb-4">SynCore</div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+              Synchronizing People, Process & Technology for measurable business outcomes.
             </p>
           </div>
           {[
-            { title: "Company", links: ["About", "Services", "Careers", "Contact"] },
-            { title: "Services", links: ["Strategy", "Consulting", "Advisory", "Research"] },
-            { title: "Resources", links: ["Blog", "Case Studies", "Whitepapers", "FAQ"] },
+            { title: "Company", links: ["Home", "About", "Services", "Contact"] },
+            { title: "Expertise", links: ["Strategy", "Project Management", "New Product Development", "Operational Excellence"] },
+            { title: "Quick Links", links: ["Testimonials", "Case Studies", "Partners", "Careers"] },
           ].map((col) => (
             <div key={col.title}>
               <h4 className="font-display font-semibold text-lg mb-4">{col.title}</h4>
@@ -29,7 +29,7 @@ const Footer = () => {
           ))}
         </div>
         <div className="border-t border-primary-foreground/10 pt-8 text-center text-primary-foreground/40 text-sm">
-          © 2024 Consulting. All rights reserved.
+          © 2024 SynCore. All rights reserved.
         </div>
       </div>
     </footer>

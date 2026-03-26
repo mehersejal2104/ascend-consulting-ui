@@ -3,10 +3,10 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useEffect, useState, useRef } from "react";
 
 const stats = [
-  { value: 250, suffix: "+", label: "Clients Worldwide" },
-  { value: 15, suffix: "+", label: "Years Experience" },
-  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 15, suffix: "+", label: "Projects Delivered" },
+  { value: 200, suffix: "+", label: "Enterprise Clients" },
   { value: 50, suffix: "+", label: "Expert Consultants" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
 function CountUp({ target, suffix, started }: { target: number; suffix: string; started: boolean }) {
@@ -53,7 +53,7 @@ const StatsSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-primary-foreground/70 max-w-xl mx-auto text-lg"
           >
-            Delivering measurable results for businesses across the globe.
+            Delivering measurable results for businesses across industries.
           </motion.p>
         </div>
 

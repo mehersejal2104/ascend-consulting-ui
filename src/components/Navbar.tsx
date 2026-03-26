@@ -28,7 +28,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
         <a href="#" className="font-display text-2xl font-bold text-primary tracking-tight">
-          LOGO
+          SynCore
         </a>
 
         <div className="hidden md:flex items-center gap-1">
