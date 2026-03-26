@@ -3,12 +3,12 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { TrendingUp, Users, Lightbulb, BarChart3, Shield, Globe } from "lucide-react";
 
 const services = [
-  { icon: TrendingUp, title: "Business Strategy", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore." },
-  { icon: Users, title: "Management Consulting", description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." },
-  { icon: Lightbulb, title: "Innovation & Growth", description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim." },
-  { icon: BarChart3, title: "Financial Advisory", description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo." },
-  { icon: Shield, title: "Risk Management", description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium." },
-  { icon: Globe, title: "Global Expansion", description: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur." },
+  { icon: TrendingUp, title: "Business Consulting", description: "We partner with family-owned businesses and professionally managed enterprises to design and implement customized solutions that drive measurable business outcomes." },
+  { icon: Users, title: "Management Workshops", description: "Structured leadership and capability-building programs that empower teams to perform at their best and drive organizational change." },
+  { icon: Lightbulb, title: "Strategy", description: "Strategic planning and execution frameworks that align your organization's vision with actionable roadmaps for sustainable growth." },
+  { icon: BarChart3, title: "Project Management", description: "End-to-end project management expertise ensuring timely delivery, resource optimization, and measurable project outcomes." },
+  { icon: Shield, title: "New Product Development", description: "Innovation-driven product development consulting from ideation to market launch, helping businesses stay ahead of the curve." },
+  { icon: Globe, title: "Operational Excellence", description: "Streamlining operations and processes to achieve peak efficiency, reduce costs, and improve overall business performance." },
 ];
 
 const ServicesSection = () => {
@@ -24,7 +24,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.6 }}
             className="inline-block px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider uppercase mb-4"
           >
-            Our Services
+            What We Do
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -32,7 +32,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
           >
-            What We <span className="text-gradient">Offer</span>
+            Our <span className="text-gradient">Services</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -40,7 +40,7 @@ const ServicesSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-muted-foreground max-w-2xl mx-auto text-lg"
           >
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            The Core Leverage — We achieve great things. That's the power of leverage, and it's at the core of everything we do.
           </motion.p>
         </div>
 

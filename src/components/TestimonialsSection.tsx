@@ -5,19 +5,19 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    name: "John Smith",
-    role: "CEO, Tech Corp",
+    quote: "SynCore's structured approach to operational excellence helped us transform our supply chains and achieve measurable improvements in efficiency and performance across operations.",
+    name: "Cipla",
+    role: "Leading Pharmaceutical Company",
   },
   {
-    quote: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
-    name: "Sarah Johnson",
-    role: "Director, Finance Inc",
+    quote: "Working with SynCore gave us the clarity and hands-on approach that made a real impact on our business unit performance.",
+    name: "Nilkamal",
+    role: "India's Largest Plastics Manufacturer",
   },
   {
-    quote: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
-    name: "Michael Chen",
-    role: "Founder, StartUp Co",
+    quote: "SynCore's expertise in synchronizing people, process, and technology has been instrumental in driving our organizational transformation and operational efficiency.",
+    name: "LAT",
+    role: "Engineering & Construction Conglomerate",
   },
 ];
 

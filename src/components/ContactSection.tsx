@@ -36,12 +36,12 @@ const ContactSection = () => {
             className="space-y-8"
           >
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Synchronizing People, Process & Technology for measurable business outcomes. Get in touch to start your transformation journey.
             </p>
             {[
-              { icon: Mail, label: "info@consulting.com" },
-              { icon: Phone, label: "+1 (555) 123-4567" },
-              { icon: MapPin, label: "123 Business Ave, Suite 100, New York, NY" },
+              { icon: Mail, label: "info@syncore.com" },
+              { icon: Phone, label: "+91 (000) 000-0000" },
+              { icon: MapPin, label: "India" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center flex-shrink-0">
