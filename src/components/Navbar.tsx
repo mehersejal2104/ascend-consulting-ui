@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
-const navItems = ["Home", "Service", "About", "Contact"];
+const navItems = ["Home", "Services", "Infinity Sync", "Client Corner"];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -26,11 +27,13 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
-        <a href="#" className="font-display text-2xl font-bold text-primary tracking-tight">
-          SynCore
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-3">
+        {/* Logo */}
+        <a href="#" className="flex items-center">
+          <img src={logo} alt="SynCore - Synchronizing around the Core" className="h-12 md:h-14 w-auto" />
         </a>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <button
@@ -38,13 +41,20 @@ const Navbar = () => {
               onClick={() => setActive(item)}
               className={`relative px-5 py-2 text-sm font-medium transition-all duration-300 rounded-full ${
                 active === item
-                  ? "bg-primary text-primary-foreground"
+                  ? "text-primary font-semibold"
                   : "text-foreground/70 hover:text-foreground nav-link-hover"
               }`}
             >
               {item}
             </button>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="hidden md:block">
+          <button className="px-6 py-2.5 rounded-full gradient-primary text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5">
+            Start Your Journey
+          </button>
         </div>
 
         <button
@@ -75,6 +85,9 @@ const Navbar = () => {
                   {item}
                 </button>
               ))}
+              <button className="mt-2 px-6 py-3 rounded-full gradient-primary text-primary-foreground font-semibold text-sm tracking-wide">
+                Start Your Journey
+              </button>
             </div>
           </motion.div>
         )}

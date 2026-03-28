@@ -1,93 +1,158 @@
-import { motion } from "framer-motion";
-import heroImg from "@/assets/hero-consulting.jpg";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import heroPeople from "@/assets/hero-people.jpg";
+import heroProcess from "@/assets/hero-process.jpg";
+import heroInformation from "@/assets/hero-information.jpg";
+
+const slides = [
+  {
+    image: heroPeople,
+    heading: "Synchronizing",
+    highlight: "People",
+    description:
+      "Building high-performance teams and leadership capabilities that drive organizational success.",
+  },
+  {
+    image: heroProcess,
+    heading: "Synchronizing",
+    highlight: "Process",
+    description:
+      "Streamlining operations and workflows to achieve peak efficiency and measurable business outcomes.",
+  },
+  {
+    image: heroInformation,
+    heading: "Synchronizing",
+    highlight: "Information",
+    description:
+      "Leveraging data-driven insights and technology to empower smarter business decisions.",
+  },
+];
 
 const HeroSection = () => {
+  const [current, setCurrent] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const slide = slides[current];
+
   return (
-    <section className="relative min-h-screen flex items-center section-padding pt-32 overflow-hidden">
-      {/* Background wave lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" viewBox="0 0 1440 900" fill="none">
-        <path d="M-100 600C200 400 400 800 700 500S1100 200 1500 400" stroke="hsl(179 98% 24%)" strokeWidth="2" />
-        <path d="M-100 650C200 450 400 850 700 550S1100 250 1500 450" stroke="hsl(179 98% 24%)" strokeWidth="1.5" />
-        <path d="M-100 700C200 500 400 900 700 600S1100 300 1500 500" stroke="hsl(179 98% 24%)" strokeWidth="1" />
-      </svg>
-
-      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
-        {/* Left content */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider uppercase mb-6">
-              Start Your Journey
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6"
-          >
-            Synchronizing People,{" "}
-            <span className="text-gradient">Process, Technology.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg"
-          >
-            A leadership-focused business consulting firm helping organizations improve sales performance, profitability, and operational excellence.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
-            className="flex flex-wrap gap-4"
-          >
-            <button className="px-8 py-4 rounded-full gradient-primary text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5">
-              Read More
-            </button>
-            <button className="px-8 py-4 rounded-full border-2 border-primary text-primary font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
-              Contact Us
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Right image with blob mask */}
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Background images */}
+      <AnimatePresence mode="wait">
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
+          key={current}
+          initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="relative hidden lg:block"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          className="absolute inset-0"
         >
-          <div className="relative">
-            <div className="absolute -inset-4 blob-shape gradient-primary opacity-10 animate-float-slow" />
-            <div className="blob-shape overflow-hidden relative z-10">
-              <img
-                src={heroImg}
-                alt="SynCore consulting team"
-                width={1024}
-                height={1024}
-                className="w-full h-[500px] object-cover"
-              />
-            </div>
-            {/* Decorative accent */}
-            <div className="absolute -bottom-6 -left-6 w-20 h-20 rounded-2xl bg-accent opacity-80 animate-float z-0" />
-            <div className="absolute -top-4 -right-4 w-12 h-12 rounded-full border-4 border-primary opacity-30 animate-float-delayed" />
-          </div>
+          <img
+            src={slide.image}
+            alt={`${slide.highlight} background`}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-foreground/30" />
         </motion.div>
-      </div>
+      </AnimatePresence>
 
-      {/* Curved section divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" className="w-full">
-          <path d="M0 120L60 105C120 90 240 60 360 52.5C480 45 600 60 720 67.5C840 75 960 75 1080 67.5C1200 60 1320 45 1380 37.5L1440 30V120H0Z" fill="hsl(var(--secondary))" />
-        </svg>
+      {/* Content */}
+      <div className="relative z-10 h-full flex items-center">
+        <div className="max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.15 } },
+                exit: {},
+              }}
+              className="max-w-2xl"
+            >
+              {/* Tag */}
+              <motion.span
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+                }}
+                className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary-foreground text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-sm border border-primary/30"
+              >
+                Start Your Journey
+              </motion.span>
+
+              {/* Heading */}
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 50 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+                  exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
+                }}
+                className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary-foreground mb-6"
+              >
+                {slide.heading}{" "}
+                <span className="text-accent">{slide.highlight}.</span>
+              </motion.h1>
+
+              {/* Description */}
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+                  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+                }}
+                className="text-primary-foreground/80 text-lg md:text-xl leading-relaxed mb-10 max-w-lg"
+              >
+                {slide.description}
+              </motion.p>
+
+              {/* Buttons */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+                  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+                }}
+                className="flex flex-wrap gap-4"
+              >
+                <button className="px-8 py-4 rounded-full gradient-primary text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+                  Read More
+                </button>
+                <button className="px-8 py-4 rounded-full border-2 border-primary-foreground/40 text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-primary-foreground/10 hover:border-primary-foreground/70">
+                  Contact Us
+                </button>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Slide indicators */}
+          <div className="absolute bottom-12 left-6 md:left-12 lg:left-24 flex gap-3">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-1 rounded-full transition-all duration-500 ${
+                  i === current
+                    ? "w-12 bg-accent"
+                    : "w-6 bg-primary-foreground/40 hover:bg-primary-foreground/60"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
