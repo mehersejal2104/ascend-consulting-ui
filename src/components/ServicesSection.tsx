@@ -107,20 +107,6 @@ const ServicesSection = () => {
                 {service.description}
               </p>
 
-              {/* Expand detail on hover */}
-              <motion.div
-                initial={false}
-                animate={{
-                  height: hoveredIndex === i ? "auto" : 0,
-                  opacity: hoveredIndex === i ? 1 : 0,
-                }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
-                <p className="text-muted-foreground text-sm leading-relaxed pt-2 border-t border-border">
-                  {service.detail}
-                </p>
-              </motion.div>
 
               {/* Arrow indicator */}
               <div
