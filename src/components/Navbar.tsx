@@ -41,8 +41,10 @@ const Navbar = () => {
               onClick={() => setActive(item)}
               className={`relative px-5 py-2 text-sm font-medium transition-all duration-300 rounded-full ${
                 active === item
-                  ? "text-primary font-semibold"
-                  : "text-foreground/70 hover:text-foreground nav-link-hover"
+                  ? scrolled ? "text-primary font-semibold" : "text-accent font-semibold"
+                  : scrolled
+                    ? "text-foreground/70 hover:text-foreground nav-link-hover"
+                    : "text-white/80 hover:text-white nav-link-hover"
               }`}
             >
               {item}
@@ -59,7 +61,7 @@ const Navbar = () => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground p-2"
+          className={`md:hidden p-2 transition-colors duration-300 ${scrolled ? "text-foreground" : "text-white"}`}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
