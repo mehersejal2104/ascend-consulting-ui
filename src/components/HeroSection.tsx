@@ -44,25 +44,27 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background images */}
+      {/* Background images with zoom effect */}
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ scale: 1.05, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          <img
+          <motion.img
             src={slide.image}
             alt={`${slide.highlight} background`}
             width={1920}
             height={1080}
             className="w-full h-full object-cover"
+            animate={{ scale: 1.08 }}
+            transition={{ duration: 5, ease: "linear" }}
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-foreground/30" />
+          {/* Minimal dark gradient for text readability - no white */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
@@ -82,18 +84,6 @@ const HeroSection = () => {
               }}
               className="max-w-2xl"
             >
-              {/* Tag */}
-              <motion.span
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-                  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
-                }}
-                className="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary-foreground text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-sm border border-primary/30"
-              >
-                Start Your Journey
-              </motion.span>
-
               {/* Heading */}
               <motion.h1
                 variants={{
@@ -101,7 +91,7 @@ const HeroSection = () => {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
                   exit: { opacity: 0, y: -30, transition: { duration: 0.3 } },
                 }}
-                className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-primary-foreground mb-6"
+                className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-6"
               >
                 {slide.heading}{" "}
                 <span className="text-accent">{slide.highlight}.</span>
@@ -114,27 +104,10 @@ const HeroSection = () => {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
                   exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
                 }}
-                className="text-primary-foreground/80 text-lg md:text-xl leading-relaxed mb-10 max-w-lg"
+                className="text-white/80 text-lg md:text-xl leading-relaxed max-w-lg"
               >
                 {slide.description}
               </motion.p>
-
-              {/* Buttons */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 40 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-                  exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
-                }}
-                className="flex flex-wrap gap-4"
-              >
-                <button className="px-8 py-4 rounded-full gradient-primary text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
-                  Read More
-                </button>
-                <button className="px-8 py-4 rounded-full border-2 border-primary-foreground/40 text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-primary-foreground/10 hover:border-primary-foreground/70">
-                  Contact Us
-                </button>
-              </motion.div>
             </motion.div>
           </AnimatePresence>
 
@@ -147,7 +120,7 @@ const HeroSection = () => {
                 className={`h-1 rounded-full transition-all duration-500 ${
                   i === current
                     ? "w-12 bg-accent"
-                    : "w-6 bg-primary-foreground/40 hover:bg-primary-foreground/60"
+                    : "w-6 bg-white/40 hover:bg-white/60"
                 }`}
               />
             ))}
