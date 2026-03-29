@@ -14,28 +14,9 @@ const AboutSection = () => {
 
   return (
     <section ref={ref} className="section-padding bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-        {/* Left - visual */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          animate={isVisible ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="relative"
-        >
-          <div className="relative rounded-3xl overflow-hidden">
-            <div className="w-full h-[420px] gradient-primary opacity-90 rounded-3xl" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center text-primary-foreground p-8">
-                <div className="text-7xl font-display font-bold mb-2">15+</div>
-                <div className="text-lg font-medium opacity-80">Years of Excellence</div>
-              </div>
-            </div>
-          </div>
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent rounded-2xl -z-10 opacity-60" />
-        </motion.div>
-
-        {/* Right - content */}
-        <div>
+      <div className="max-w-7xl mx-auto">
+        {/* Header - horizontal layout like services */}
+        <div className="text-center mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -48,7 +29,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6"
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
           >
             The Core — <span className="text-gradient">The Leverage Point</span>
           </motion.h2>
@@ -56,7 +37,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-muted-foreground text-lg leading-relaxed mb-4"
+            className="text-muted-foreground max-w-3xl mx-auto text-lg leading-relaxed"
           >
             SynCore is a leadership-focused business consulting firm that helps organizations improve sales performance, profitability, and operational excellence. We partner with family-owned businesses and professionally managed enterprises to design and implement customized solutions that drive measurable business outcomes.
           </motion.p>
@@ -64,34 +45,26 @@ const AboutSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-muted-foreground text-base italic leading-relaxed mb-8"
+            className="text-muted-foreground max-w-2xl mx-auto text-base italic leading-relaxed mt-4"
           >
             "Give me a lever long enough, and a place to stand, and I will move the earth."
           </motion.p>
+        </div>
 
-          <div className="space-y-4 mb-10">
-            {aboutPoints.map((point, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 20 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                className="flex items-center gap-3"
-              >
-                <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                <span className="text-foreground/80">{point}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="px-8 py-4 rounded-full gradient-primary text-primary-foreground font-semibold text-sm tracking-wide transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5"
-          >
-            Learn More
-          </motion.button>
+        {/* Points in a horizontal grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {aboutPoints.map((point, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+              className="flex items-start gap-3 p-6 rounded-2xl bg-secondary border border-transparent hover:border-primary/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
+            >
+              <CheckCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+              <span className="text-foreground/80 text-sm leading-relaxed">{point}</span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
