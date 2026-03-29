@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, Quote, Play } from "lucide-react";
 
 const testimonials = [
   {
@@ -21,36 +21,70 @@ const testimonials = [
   },
 ];
 
+const videoTestimonials = [
+  {
+    name: "Cipla",
+    videoId: "YcmP_yPO2-o",
+    thumbnail: "https://img.youtube.com/vi/YcmP_yPO2-o/hqdefault.jpg",
+  },
+  {
+    name: "Nilkamal",
+    videoId: "dc8AoEHtHVo",
+    thumbnail: "https://img.youtube.com/vi/dc8AoEHtHVo/hqdefault.jpg",
+  },
+];
+
 const TestimonialsSection = () => {
   const { ref, isVisible } = useScrollAnimation();
   const [current, setCurrent] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setInterval(() => setCurrent((p) => (p + 1) % testimonials.length), 5000);
     return () => clearInterval(timer);
   }, []);
 
+  // Auto-scroll video carousel
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    let pos = 0;
+    const speed = 0.5;
+    let animId: number;
+    const animate = () => {
+      pos += speed;
+      if (pos >= el.scrollWidth / 2) pos = 0;
+      el.scrollLeft = pos;
+      animId = requestAnimationFrame(animate);
+    };
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
   return (
     <section ref={ref} className="section-padding bg-secondary relative overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="inline-block px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider uppercase mb-4"
-        >
-          Testimonials
-        </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-16"
-        >
-          What Our <span className="text-gradient">Clients Say</span>
-        </motion.h2>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-primary-light text-primary text-xs font-semibold tracking-wider uppercase mb-4"
+          >
+            Testimonials
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
+          >
+            What Our <span className="text-gradient">Clients Say</span>
+          </motion.h2>
+        </div>
 
-        <div className="relative">
+        {/* Text testimonials carousel */}
+        <div className="max-w-4xl mx-auto text-center mb-20">
           <Quote className="w-12 h-12 text-primary/10 mx-auto mb-6" />
           <AnimatePresence mode="wait">
             <motion.div
@@ -98,6 +132,48 @@ const TestimonialsSection = () => {
             </button>
           </div>
         </div>
+
+        {/* Video testimonials - moving carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <h3 className="font-display text-xl font-semibold text-foreground text-center mb-8">
+            Hear From Our Clients
+          </h3>
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-hidden"
+            style={{ scrollBehavior: "auto" }}
+          >
+            {/* Duplicate videos for infinite scroll */}
+            {[...videoTestimonials, ...videoTestimonials, ...videoTestimonials].map((video, i) => (
+              <a
+                key={i}
+                href={`https://youtu.be/${video.videoId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 w-80 md:w-96 group"
+              >
+                <div className="relative rounded-2xl overflow-hidden aspect-video">
+                  <img
+                    src={video.thumbnail}
+                    alt={`${video.name} testimonial`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-accent/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-7 h-7 text-accent-foreground ml-1" fill="currentColor" />
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-3 font-display font-semibold text-foreground text-center">{video.name}</p>
+              </a>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

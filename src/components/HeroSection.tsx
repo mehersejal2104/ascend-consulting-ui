@@ -44,12 +44,12 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background images with zoom effect */}
-      <AnimatePresence mode="wait">
+      {/* Background images with Ken Burns zoom - no white flash */}
+      <AnimatePresence initial={false}>
         <motion.div
           key={current}
-          initial={{ scale: 1.05, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0"
@@ -59,11 +59,12 @@ const HeroSection = () => {
             alt={`${slide.highlight} background`}
             width={1920}
             height={1080}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover will-change-transform"
+            initial={{ scale: 1 }}
             animate={{ scale: 1.08 }}
-            transition={{ duration: 5, ease: "linear" }}
+            transition={{ duration: 6, ease: "linear" }}
           />
-          {/* Minimal dark gradient for text readability - no white */}
+          {/* Clean dark gradient only - no white */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         </motion.div>
       </AnimatePresence>
@@ -84,7 +85,6 @@ const HeroSection = () => {
               }}
               className="max-w-2xl"
             >
-              {/* Heading */}
               <motion.h1
                 variants={{
                   hidden: { opacity: 0, y: 50 },
@@ -97,7 +97,6 @@ const HeroSection = () => {
                 <span className="text-accent">{slide.highlight}.</span>
               </motion.h1>
 
-              {/* Description */}
               <motion.p
                 variants={{
                   hidden: { opacity: 0, y: 40 },
