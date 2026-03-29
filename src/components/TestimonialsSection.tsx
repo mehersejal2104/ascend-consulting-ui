@@ -133,43 +133,42 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Video testimonials - moving carousel */}
+        {/* Video testimonials - Hear From Our Clients */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h3 className="font-display text-xl font-semibold text-foreground text-center mb-8">
+          <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
             Hear From Our Clients
           </h3>
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-hidden"
+            className="flex gap-8 overflow-hidden justify-center"
             style={{ scrollBehavior: "auto" }}
           >
-            {/* Duplicate videos for infinite scroll */}
             {[...videoTestimonials, ...videoTestimonials, ...videoTestimonials].map((video, i) => (
               <a
                 key={i}
                 href={`https://youtu.be/${video.videoId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 w-80 md:w-96 group"
+                className="flex-shrink-0 w-[400px] md:w-[480px] group"
               >
-                <div className="relative rounded-2xl overflow-hidden aspect-video">
+                <div className="relative rounded-2xl overflow-hidden aspect-video shadow-lg">
                   <img
                     src={video.thumbnail}
                     alt={`${video.name} testimonial`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-accent/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl">
                       <Play className="w-7 h-7 text-accent-foreground ml-1" fill="currentColor" />
                     </div>
                   </div>
                 </div>
-                <p className="mt-3 font-display font-semibold text-foreground text-center">{video.name}</p>
+                <p className="mt-4 font-display text-lg font-semibold text-foreground text-center">{video.name}</p>
               </a>
             ))}
           </div>
