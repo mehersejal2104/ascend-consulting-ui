@@ -49,7 +49,7 @@ const Navbar = () => {
               {item}
             </button>
           ))}
-          <button className="ml-4 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-base font-semibold hover:bg-primary/90 transition-all duration-300">
+          <button className="ml-4 px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300">
             Start Your Journey
           </button>
         </div>
