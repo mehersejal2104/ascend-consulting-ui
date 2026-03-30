@@ -27,10 +27,9 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 py-4">
-        {/* Logo - bigger */}
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500 ${scrolled ? "py-1.5" : "py-2.5"}`}>
         <a href="#" className="flex items-center">
-          <img src={logo} alt="SynCore - Synchronizing around the Core" className="h-14 md:h-18 lg:h-20 w-auto" />
+          <img src={logo} alt="SynCore - Synchronizing around the Core" className={`transition-all duration-500 w-auto ${scrolled ? "h-9 md:h-10" : "h-10 md:h-12"}`} />
         </a>
 
         {/* Desktop nav */}
