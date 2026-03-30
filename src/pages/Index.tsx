@@ -15,14 +15,14 @@ const Index = () => {
     <div className="relative overflow-hidden">
       <FloatingBlobs />
       <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <AboutSection />
-      <ExpertiseSection />
+      <div id="home"><HeroSection /></div>
+      <div id="services"><ServicesSection /></div>
+      <div id="about"><AboutSection /></div>
+      <div id="expertise"><ExpertiseSection /></div>
       <StatsSection />
-      <TestimonialsSection />
+      <div id="testimonials"><TestimonialsSection /></div>
       <TrustedBySection />
-      <ContactSection />
+      <div id="contact"><ContactSection /></div>
       <Footer />
     </div>
   );
