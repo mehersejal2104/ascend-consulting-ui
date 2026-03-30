@@ -3,7 +3,12 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 
-const navItems = ["Home", "Services", "Infinity Sync", "Client Corner"];
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "Infinity Sync", href: "#expertise" },
+  { label: "Client Corner", href: "#testimonials" },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
