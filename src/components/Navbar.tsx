@@ -10,6 +10,11 @@ const navItems = [
   { label: "Client Corner", href: "#testimonials" },
 ];
 
+const scrollTo = (href: string) => {
+  const el = document.querySelector(href);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+};
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,29 +37,31 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500 ${scrolled ? "py-1.5" : "py-2.5"}`}>
-        <a href="#" className="flex items-center">
-          <img src={logo} alt="SynCore - Synchronizing around the Core" className={`transition-all duration-500 w-auto ${scrolled ? "h-9 md:h-10" : "h-10 md:h-12"}`} />
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500 ${scrolled ? "py-2" : "py-3"}`}>
+        <a href="#home" onClick={(e) => { e.preventDefault(); scrollTo("#home"); }} className="flex items-center">
+          <img src={logo} alt="SynCore - Synchronizing around the Core" className={`transition-all duration-500 w-auto ${scrolled ? "h-10 md:h-12" : "h-12 md:h-14"}`} />
         </a>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-3">
           {navItems.map((item) => (
             <button
-              key={item}
-              onClick={() => setActive(item)}
-              className={`relative px-4 py-1.5 text-sm font-medium transition-all duration-300 rounded-full ${
-                active === item
+              key={item.label}
+              onClick={() => { setActive(item.label); scrollTo(item.href); }}
+              className={`relative px-5 py-2 text-[15px] font-medium transition-all duration-300 rounded-full ${
+                active === item.label
                   ? scrolled ? "text-primary font-semibold" : "text-accent font-semibold"
                   : scrolled
                     ? "text-foreground/70 hover:text-foreground nav-link-hover"
                     : "text-white/80 hover:text-white nav-link-hover"
               }`}
             >
-              {item}
+              {item.label}
             </button>
           ))}
-          <button className="ml-4 px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300">
+          <button
+            onClick={() => scrollTo("#contact")}
+            className="ml-4 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-[15px] font-semibold hover:bg-primary/90 transition-all duration-300"
+          >
             Start Your Journey
           </button>
         </div>
@@ -78,13 +85,13 @@ const Navbar = () => {
             <div className="flex flex-col px-6 py-4 gap-2">
               {navItems.map((item) => (
                 <button
-                  key={item}
-                  onClick={() => { setActive(item); setMobileOpen(false); }}
+                  key={item.label}
+                  onClick={() => { setActive(item.label); setMobileOpen(false); scrollTo(item.href); }}
                   className={`text-left px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    active === item ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:bg-muted"
+                    active === item.label ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:bg-muted"
                   }`}
                 >
-                  {item}
+                  {item.label}
                 </button>
               ))}
             </div>
