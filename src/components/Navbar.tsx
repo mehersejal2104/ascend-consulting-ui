@@ -38,7 +38,7 @@ const Navbar = () => {
             <button
               key={item}
               onClick={() => setActive(item)}
-              className={`relative px-5 py-2.5 text-base font-medium transition-all duration-300 rounded-full ${
+              className={`relative px-4 py-1.5 text-sm font-medium transition-all duration-300 rounded-full ${
                 active === item
                   ? scrolled ? "text-primary font-semibold" : "text-accent font-semibold"
                   : scrolled
