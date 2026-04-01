@@ -48,14 +48,14 @@ const CaseStudiesSection = () => {
           </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {caseStudies.map((study, i) => (
             <motion.div
               key={study.title}
               initial={{ opacity: 0, y: 50 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[3/4]"
+              className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[3/4] sm:aspect-[3/4]"
             >
               <img
                 src={study.image}

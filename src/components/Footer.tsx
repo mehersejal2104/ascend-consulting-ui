@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="gradient-dark text-primary-foreground section-padding pb-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
           <div className="md:col-span-1">
             <div className="font-display text-2xl font-bold mb-4">SynCore</div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
