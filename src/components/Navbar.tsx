@@ -39,9 +39,9 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 md:px-12 transition-all duration-500 ${scrolled ? "py-3" : "py-4"}`}>
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-4 md:px-12 transition-all duration-500 ${scrolled ? "py-2" : "py-3"}`}>
         <a href="#home" onClick={(e) => { e.preventDefault(); scrollTo("#home"); }} className="flex items-center">
-          <img src={logo} alt="SynCore - Synchronizing around the Core" className={`transition-all duration-500 w-auto ${scrolled ? "h-12 md:h-14" : "h-14 md:h-16"}`} />
+          <img src={logo} alt="SynCore - Synchronizing around the Core" className={`transition-all duration-500 w-auto ${scrolled ? "h-10 md:h-12" : "h-12 md:h-14"}`} />
         </a>
 
         <div className="hidden md:flex items-center gap-4">
