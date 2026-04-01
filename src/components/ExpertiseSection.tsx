@@ -1,56 +1,59 @@
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState } from "react";
-import { Package, BarChart3, ClipboardList, Rocket, Target } from "lucide-react";
+import expertiseSupplyChain from "@/assets/expertise-supply-chain.jpg";
+import expertiseSales from "@/assets/expertise-sales.jpg";
+import expertiseProject from "@/assets/expertise-project.jpg";
+import expertiseProduct from "@/assets/expertise-product.jpg";
+import expertiseStrategy from "@/assets/expertise-strategy.jpg";
 
 const expertiseAreas = [
   {
-    icon: Package,
     title: "Supply Chain Management",
-    subtitle: "End to End – Raw Material to Distribution",
+    subtitle: "End to end – Raw Material to Distribution",
     description:
-      "SynCore enables integrated, end-to-end supply chains by aligning sourcing, production, inventory, and distribution with business goals.",
+      "SynCore enables integrated, end-to-end supply chains by aligning sourcing, production, inventory, and distribution with business goals. We help organizations synchronize demand and supply to improve service levels, reduce inventory, and optimize working capital—turning the supply chain into a scalable, performance-driven advantage.",
+    image: expertiseSupplyChain,
   },
   {
-    icon: BarChart3,
     title: "Sales and Marketing",
     subtitle: "Revenue Growth & Market Execution",
     description:
-      "SynCore helps organizations strengthen sales effectiveness and marketing execution by aligning strategy, processes, and teams with market demand.",
+      "SynCore helps organizations strengthen sales effectiveness and marketing execution by aligning strategy, processes, and teams with market demand. We enable predictable revenue growth through demand planning, channel performance, and sales execution — ensuring marketing efforts convert into measurable sales outcomes.",
+    image: expertiseSales,
   },
   {
-    icon: ClipboardList,
     title: "Project Management",
     subtitle: "On Time, Within Budget",
     description:
-      "SynCore helps organizations deliver projects on time, within budget, and with clear accountability through structured planning and governance.",
+      "SynCore helps organizations deliver projects on time, within budget, and with clear accountability. We establish structured planning, governance, and execution frameworks that align teams, manage risks, and ensure projects deliver measurable business value.",
+    image: expertiseProject,
   },
   {
-    icon: Rocket,
     title: "New Product Development",
     subtitle: "Ideation to Market Launch",
     description:
-      "SynCore supports organizations in launching successful new products by aligning market needs, cross-functional teams, and execution discipline.",
+      "SynCore supports organizations in launching successful new products by aligning market needs, cross-functional teams, and execution discipline. We help streamline ideation, development, and go-to-market processes to reduce time-to-market, control costs, and maximize product success.",
+    image: expertiseProduct,
   },
   {
-    icon: Target,
     title: "Strategy & Tactics",
     subtitle: "New Market Entry / Business Entry",
     description:
-      "SynCore Consulting helps organizations enter new markets and launch new businesses with clarity and confidence.",
+      "SynCore Consulting helps organizations enter new markets and launch new businesses with clarity and confidence. We define market entry strategies, operating models, and execution roadmaps that minimize risk, accelerate scale-up, and ensure alignment between leadership intent, teams, and market realities.",
+    image: expertiseStrategy,
   },
 ];
 
 const ExpertiseSection = () => {
   const { ref, isVisible } = useScrollAnimation();
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section ref={ref} className="section-padding relative overflow-hidden">
-      <div className="absolute inset-0 gradient-dark opacity-95" />
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
+    <section ref={ref} className="relative overflow-hidden bg-foreground">
+      {/* Header */}
+      <div className="section-padding pb-0">
+        <div className="max-w-7xl mx-auto text-center mb-12">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -67,102 +70,105 @@ const ExpertiseSection = () => {
           >
             Our Areas of <span className="text-accent">Functional Expertise</span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-primary-foreground/70 max-w-xl mx-auto text-base md:text-lg"
-          >
-            Delivering excellence across key business functions.
-          </motion.p>
         </div>
+      </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-          {expertiseAreas.slice(0, 3).map((area, i) => (
+      {/* Full-screen McKinsey-style layout */}
+      <div className="relative w-full min-h-[80vh] flex flex-col lg:flex-row">
+        {/* Left: Image */}
+        <div className="relative w-full lg:w-1/2 h-[40vh] lg:h-auto lg:min-h-[80vh] overflow-hidden">
+          {expertiseAreas.map((area, i) => (
             <motion.div
-              key={area.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 * i }}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`relative p-6 md:p-8 rounded-2xl border transition-all duration-500 cursor-pointer group ${
-                hoveredIndex === i
-                  ? "bg-primary/15 border-accent/30 -translate-y-1"
-                  : "bg-primary-foreground/5 border-primary-foreground/10"
-              }`}
+              key={i}
+              initial={false}
+              animate={{ opacity: activeIndex === i ? 1 : 0 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute inset-0"
             >
-              <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-500 ${
-                  hoveredIndex === i ? "bg-accent/20" : "bg-primary-foreground/10"
-                }`}
-              >
-                <area.icon
-                  className={`w-6 h-6 transition-colors duration-500 ${
-                    hoveredIndex === i ? "text-accent" : "text-primary-foreground/60"
-                  }`}
-                />
-              </div>
-              <h3 className={`font-display text-lg md:text-xl font-semibold mb-1 transition-colors duration-300 ${
-                hoveredIndex === i ? "text-accent" : "text-primary-foreground"
-              }`}>
-                {area.title}
-              </h3>
-              <span className="text-primary-foreground/40 text-xs tracking-wide uppercase block mb-3">
-                {area.subtitle}
-              </span>
-              <p className="text-primary-foreground/60 text-sm leading-relaxed">
-                {area.description}
-              </p>
+              <motion.img
+                src={area.image}
+                alt={area.title}
+                width={1920}
+                height={1080}
+                loading="lazy"
+                className="w-full h-full object-cover"
+                animate={activeIndex === i ? { scale: 1.05 } : { scale: 1 }}
+                transition={{ duration: 6, ease: "linear" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
             </motion.div>
           ))}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {expertiseAreas.slice(3).map((area, i) => (
+
+        {/* Right: Accordion-style items */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 md:px-12 lg:px-16 py-12">
+          {expertiseAreas.map((area, i) => (
             <motion.div
-              key={area.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 * (i + 3) }}
-              onMouseEnter={() => setHoveredIndex(i + 3)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`relative p-6 md:p-8 rounded-2xl border transition-all duration-500 cursor-pointer group ${
-                hoveredIndex === i + 3
-                  ? "bg-primary/15 border-accent/30 -translate-y-1"
-                  : "bg-primary-foreground/5 border-primary-foreground/10"
+              key={i}
+              initial={{ opacity: 0, x: 40 }}
+              animate={isVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * i }}
+              onMouseEnter={() => setActiveIndex(i)}
+              onClick={() => setActiveIndex(i)}
+              className={`group cursor-pointer border-b border-primary-foreground/10 transition-all duration-500 ${
+                activeIndex === i ? "py-8" : "py-5"
               }`}
             >
-              <div
-                className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-500 ${
-                  hoveredIndex === i + 3 ? "bg-accent/20" : "bg-primary-foreground/10"
-                }`}
-              >
-                <area.icon
-                  className={`w-6 h-6 transition-colors duration-500 ${
-                    hoveredIndex === i + 3 ? "text-accent" : "text-primary-foreground/60"
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3
+                    className={`font-display text-lg md:text-xl font-semibold transition-colors duration-300 ${
+                      activeIndex === i ? "text-accent" : "text-primary-foreground/70"
+                    }`}
+                  >
+                    {area.title}
+                  </h3>
+                  <span
+                    className={`text-xs tracking-wide uppercase transition-all duration-300 ${
+                      activeIndex === i ? "text-primary-foreground/60" : "text-primary-foreground/30"
+                    }`}
+                  >
+                    {area.subtitle}
+                  </span>
+                </div>
+                <motion.div
+                  animate={{ rotate: activeIndex === i ? 45 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className={`w-8 h-8 rounded-full border flex items-center justify-center transition-colors duration-300 flex-shrink-0 ${
+                    activeIndex === i
+                      ? "border-accent text-accent"
+                      : "border-primary-foreground/20 text-primary-foreground/40"
                   }`}
-                />
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                </motion.div>
               </div>
-              <h3 className={`font-display text-lg md:text-xl font-semibold mb-1 transition-colors duration-300 ${
-                hoveredIndex === i + 3 ? "text-accent" : "text-primary-foreground"
-              }`}>
-                {area.title}
-              </h3>
-              <span className="text-primary-foreground/40 text-xs tracking-wide uppercase block mb-3">
-                {area.subtitle}
-              </span>
-              <p className="text-primary-foreground/60 text-sm leading-relaxed">
-                {area.description}
-              </p>
+
+              <motion.div
+                initial={false}
+                animate={{
+                  height: activeIndex === i ? "auto" : 0,
+                  opacity: activeIndex === i ? 1 : 0,
+                }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                <p className="text-primary-foreground/60 text-sm leading-relaxed mt-4 max-w-lg">
+                  {area.description}
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-accent text-sm font-medium">
+                  Learn more
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      {/* Decorative */}
-      <div className="absolute top-10 right-10 w-40 h-40 rounded-full border border-primary-foreground/5 animate-float-slow" />
-      <div className="absolute bottom-10 left-20 w-24 h-24 blob-shape border border-primary-foreground/5 animate-float" />
     </section>
   );
 };
